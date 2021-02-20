@@ -20,7 +20,10 @@ export class App extends Component {
       .post('https://minesweeper-api.herokuapp.com/games', {
         difficulty: 0,
       })
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data)
+        this.state.board = response.data.board
+      })
   }
   render() {
     return (
