@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import { Cell } from './components/Cell'
 import axios from 'axios'
-const board = [
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-]
+
 export class App extends Component {
+  state = {
+    board: [
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    ],
+  }
   newGame = () => {
     axios
       .post('https://minesweeper-api.herokuapp.com/games', {
@@ -45,12 +48,11 @@ export class App extends Component {
             </tr>
           </thead>
           <tbody>
-            {board.map((row, rowIndex) => {
+            {this.state.board.map((row, rowIndex) => {
               return (
-                <tr>
-                  {' '}
+                <tr key={rowIndex}>
                   {row.map((col, colIndex) => {
-                    return <Cell />
+                    return <Cell key={colIndex} />
                   })}
                 </tr>
               )
