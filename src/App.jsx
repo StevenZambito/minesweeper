@@ -4,18 +4,32 @@ import axios from 'axios'
 
 export class App extends Component {
   state = {
+    id: 1,
     board: [
-      ['_', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-      [' ', '*', ' ', ' ', ' ', ' ', ' ', ' '],
-      [' ', ' ', ' ', ' ', ' ', '2', ' ', ' '],
-      [' ', ' ', ' ', ' ', '1', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     ],
   }
+
   newGame = () => {
+    axios
+      .post('https://minesweeper-api.herokuapp.com/games', {
+        difficulty: 0,
+      })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({ id: response.data.id, board: response.data.board })
+        console.log(this.state.id)
+      })
+  }
+
+  handleClickCell = (rowIndex, colIndex) => {
     axios
       .post('https://minesweeper-api.herokuapp.com/games', {
         difficulty: 0,
@@ -58,9 +72,8 @@ export class App extends Component {
                     return (
                       <Cell
                         key={colIndex}
-                        rowNum={rowIndex}
-                        colNum={colIndex}
                         value={cell}
+                        onClick={() => this.handleClickCell(rowIndex, colIndex)}
                       />
                     )
                   })}
