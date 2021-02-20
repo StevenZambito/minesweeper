@@ -1,4 +1,5 @@
 import React from 'react'
+import { Cell } from './components/Cell'
 
 export function App() {
   return (
@@ -77,7 +78,7 @@ export function App() {
         </tr>
 
         <tr>
-          <td></td>
+          <Cell />
           <td></td>
           <td></td>
           <td></td>
