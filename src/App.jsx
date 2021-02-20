@@ -50,6 +50,30 @@ export class App extends Component {
       })
   }
 
+  /**
+   * @param {{ preventDefault: () => void; }} event
+   * @param {any} rowIndex
+   * @param {any} colIndex
+   */
+  handleRightClickCell = async (event, rowIndex, colIndex) => {
+    event.preventDefault()
+
+    await axios
+      .post(
+        `https://minesweeper-api.herokuapp.com/games/${this.state.id}/flag`,
+        {
+          row: rowIndex,
+          col: colIndex,
+        }
+      )
+      .then((response) => {
+        this.setState({
+          board: response.data.board,
+          mines: response.data.mines,
+        })
+      })
+  }
+
   render() {
     return (
       <main>
@@ -85,6 +109,10 @@ export class App extends Component {
                         key={colIndex}
                         value={cell}
                         onClick={() => this.handleClickCell(rowIndex, colIndex)}
+                        // @ts-ignore
+                        onContextMenu={(event) =>
+                          this.handleRightClickCell(event, rowIndex, colIndex)
+                        }
                       />
                     )
                   })}
