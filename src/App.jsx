@@ -5,11 +5,11 @@ import axios from 'axios'
 export class App extends Component {
   state = {
     board: [
+      ['_', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-      [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', '*', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', ' ', ' ', ' ', ' ', '2', ' ', ' '],
+      [' ', ' ', ' ', ' ', '1', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -22,7 +22,7 @@ export class App extends Component {
       })
       .then((response) => {
         console.log(response.data)
-        this.state.board = response.data.board
+        this.setState({ board: response.data.board })
       })
   }
   render() {
@@ -54,8 +54,15 @@ export class App extends Component {
             {this.state.board.map((row, rowIndex) => {
               return (
                 <tr key={rowIndex}>
-                  {row.map((col, colIndex) => {
-                    return <Cell key={colIndex} />
+                  {row.map((cell, colIndex) => {
+                    return (
+                      <Cell
+                        key={colIndex}
+                        rowNum={rowIndex}
+                        colNum={colIndex}
+                        value={cell}
+                      />
+                    )
                   })}
                 </tr>
               )
