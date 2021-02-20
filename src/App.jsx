@@ -16,6 +16,7 @@ export class App extends Component {
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     ],
     mines: 10,
+    gameState: 'new',
   }
 
   newGame = () => {
@@ -46,7 +47,10 @@ export class App extends Component {
         }
       )
       .then((response) => {
-        this.setState({ board: response.data.board })
+        this.setState({
+          board: response.data.board,
+          gameState: response.data.state,
+        })
       })
   }
 
@@ -74,6 +78,16 @@ export class App extends Component {
       })
   }
 
+  determineFace = () => {
+    if (this.state.gameState === 'new' || 'playing') {
+      return '🙂'
+    } else if (this.state.gameState === 'won') {
+      return '🥳'
+    } else {
+      return '😵'
+    }
+  }
+
   render() {
     return (
       <main>
@@ -91,7 +105,7 @@ export class App extends Component {
               </td>
               <td className="table-header-row" align="center" colSpan={2}>
                 <button className="sweeper-button" onClick={this.newGame}>
-                  🙂
+                  {this.determineFace()}
                 </button>
               </td>
               <td className="timer" colSpan={3}>

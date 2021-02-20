@@ -13,9 +13,20 @@ export class Cell extends Component {
     }
   }
 
+  determineCoverage = () => {
+    if (this.props.value === ' ' || this.props.value === 'F') {
+      return 'dark-grey'
+    }
+    return 'light-grey'
+  }
+
   render() {
     return (
-      <td onClick={this.props.onClick} onContextMenu={this.props.onContextMenu}>
+      <td
+        onClick={this.props.onClick}
+        onContextMenu={this.props.onContextMenu}
+        className={this.determineCoverage()}
+      >
         {this.determineSymbol()}
       </td>
     )

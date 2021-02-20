@@ -63,11 +63,10 @@ main {
 .sweeper-table {
   font-size: 1rem;
   border-collapse: collapse;
-  background-color: rgb(220, 220, 220);
 }
 
 td {
-  border: solid 0.1rem rgb(108, 108, 108);
+  border: solid 0.1rem black;
   width: 1.5rem;
   height: 1.5rem;
   text-align: center;
@@ -85,4 +84,12 @@ td {
 tr {
   margin: 0;
   padding: 0;
+}
+
+.light-grey {
+  background-color: rgb(220, 220, 220);
+}
+
+.dark-grey {
+  background-color: rgb(108, 108, 108);
 }
