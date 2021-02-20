@@ -15,6 +15,7 @@ export class App extends Component {
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
       [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     ],
+    mines: 10,
   }
 
   newGame = () => {
@@ -23,22 +24,32 @@ export class App extends Component {
         difficulty: 0,
       })
       .then((response) => {
-        console.log(response.data)
-        this.setState({ id: response.data.id, board: response.data.board })
-        console.log(this.state.id)
+        this.setState({
+          id: response.data.id,
+          board: response.data.board,
+          mines: response.data.mines,
+        })
       })
   }
 
-  handleClickCell = (rowIndex, colIndex) => {
-    axios
-      .post('https://minesweeper-api.herokuapp.com/games', {
-        difficulty: 0,
-      })
+  /**
+   * @param {any} rowIndex
+   * @param {any} colIndex
+   */
+  handleClickCell = async (rowIndex, colIndex) => {
+    await axios
+      .post(
+        `https://minesweeper-api.herokuapp.com/games/${this.state.id}/check`,
+        {
+          row: rowIndex,
+          col: colIndex,
+        }
+      )
       .then((response) => {
-        console.log(response.data)
         this.setState({ board: response.data.board })
       })
   }
+
   render() {
     return (
       <main>
@@ -52,7 +63,7 @@ export class App extends Component {
           <thead>
             <tr className="table-header">
               <td className="mine-number" colSpan={3}>
-                10
+                {this.state.mines}
               </td>
               <td className="table-header-row" align="center" colSpan={2}>
                 <button className="sweeper-button" onClick={this.newGame}>

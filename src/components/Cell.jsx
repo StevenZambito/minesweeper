@@ -2,6 +2,6 @@ import { Component } from 'react'
 
 export class Cell extends Component {
   render() {
-    return <td>{this.props.value}</td>
+    return <td onClick={this.props.onClick}>{this.props.value}</td>
   }
 }
