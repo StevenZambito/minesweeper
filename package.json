@@ -24,6 +24,7 @@
     "useTabs": false
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "json": "^10.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

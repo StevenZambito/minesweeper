@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import { Cell } from './components/Cell'
+import axios from 'axios'
 
 export class App extends Component {
   newGame = () => {
-    window.alert('Hell yeah!')
+    axios
+      .post('https://minesweeper-api.herokuapp.com/games', {
+        difficulty: 0,
+      })
+      .then((response) => console.log(response.data))
   }
   render() {
     return (
