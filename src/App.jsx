@@ -20,17 +20,22 @@ export class App extends Component {
     face: '🙂',
     seconds: 0,
     timerVar: 1,
+    difficulty: 0,
+    colSpan: 3,
   }
 
   componentDidMount = () => {
-    this.newGame()
+    this.newGame(this.state.difficulty)
   }
 
-  newGame = async () => {
+  /**
+   * @param {any} chosenDifficulty
+   */
+  newGame = async (chosenDifficulty) => {
     this.stopTimer()
     await axios
       .post('https://minesweeper-api.herokuapp.com/games', {
-        difficulty: 0,
+        difficulty: chosenDifficulty,
       })
       .then((response) => {
         this.setState({
@@ -40,7 +45,9 @@ export class App extends Component {
           gameState: response.data.state,
           face: '🙂',
           seconds: 0,
+          difficulty: chosenDifficulty,
         })
+        this.determineColSpan()
       })
   }
 
@@ -130,27 +137,40 @@ export class App extends Component {
     }
   }
 
+  determineColSpan = () => {
+    if (this.state.difficulty === 0) {
+      this.setState({ colSpan: 3 })
+    } else if (this.state.difficulty === 1) {
+      this.setState({ colSpan: 7 })
+    } else {
+      this.setState({ colSpan: 11 })
+    }
+  }
+
   render() {
     return (
       <main>
         <div className="button-difficulty">
-          <button>Easy</button>
-          <button>Medium</button>
-          <button>Hard</button>
+          <button onClick={() => this.newGame(0)}>Easy</button>
+          <button onClick={() => this.newGame(1)}>Medium</button>
+          <button onClick={() => this.newGame(2)}>Hard</button>
         </div>
 
         <table className="sweeper-table">
           <thead>
             <tr className="table-header">
-              <td className="mine-number" colSpan={3}>
+              <td className="mine-number" colSpan={this.state.colSpan}>
                 {this.state.mines}
               </td>
               <td className="table-header-row" align="center" colSpan={2}>
-                <button className="sweeper-button" onClick={this.newGame}>
+                <button
+                  className="sweeper-button"
+                  onClick={() => this.newGame(this.state.difficulty)}
+                >
                   {this.state.face}
                 </button>
               </td>
-              <td className="timer" colSpan={3}>
+              <td className="timer" colSpan={this.state.colSpan}>
                 {this.state.seconds}
               </td>
             </tr>
