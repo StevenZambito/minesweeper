@@ -17,6 +17,7 @@ export class App extends Component {
     ],
     mines: 10,
     gameState: 'new',
+    face: '🙂',
   }
 
   newGame = () => {
@@ -51,6 +52,7 @@ export class App extends Component {
           board: response.data.board,
           gameState: response.data.state,
         })
+        this.determineFace()
       })
   }
 
@@ -61,6 +63,9 @@ export class App extends Component {
    */
   handleRightClickCell = async (event, rowIndex, colIndex) => {
     event.preventDefault()
+    if (this.state.mines <= 0) {
+      return
+    }
 
     await axios
       .post(
@@ -79,12 +84,12 @@ export class App extends Component {
   }
 
   determineFace = () => {
-    if (this.state.gameState === 'new' || 'playing') {
-      return '🙂'
+    if (this.state.gameState === 'new' || this.state.gameState === 'playing') {
+      this.setState({ face: '🙂' })
     } else if (this.state.gameState === 'won') {
-      return '🥳'
-    } else {
-      return '😵'
+      this.setState({ face: '🥳' })
+    } else if (this.state.gameState === 'lost') {
+      this.setState({ face: '😵' })
     }
   }
 
@@ -105,7 +110,7 @@ export class App extends Component {
               </td>
               <td className="table-header-row" align="center" colSpan={2}>
                 <button className="sweeper-button" onClick={this.newGame}>
-                  {this.determineFace()}
+                  {this.state.face}
                 </button>
               </td>
               <td className="timer" colSpan={3}>
