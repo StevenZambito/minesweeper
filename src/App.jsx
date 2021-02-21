@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Cell } from './components/Cell'
 import axios from 'axios'
 
@@ -18,10 +18,17 @@ export class App extends Component {
     mines: 10,
     gameState: 'new',
     face: '🙂',
+    seconds: 0,
+    timerVar: 1,
   }
 
-  newGame = () => {
-    axios
+  componentDidMount = () => {
+    this.newGame()
+  }
+
+  newGame = async () => {
+    this.stopTimer()
+    await axios
       .post('https://minesweeper-api.herokuapp.com/games', {
         difficulty: 0,
       })
@@ -30,8 +37,23 @@ export class App extends Component {
           id: response.data.id,
           board: response.data.board,
           mines: response.data.mines,
+          gameState: response.data.state,
+          face: '🙂',
+          seconds: 0,
         })
       })
+  }
+
+  startTimer = () => {
+    const localTimerVar = setInterval(() => {
+      // @ts-ignore
+      this.setState(({ seconds }) => ({ seconds: seconds + 1 }))
+    }, 1000)
+    this.setState({ timerVar: localTimerVar })
+  }
+
+  stopTimer = () => {
+    clearInterval(this.state.timerVar)
   }
 
   /**
@@ -39,6 +61,13 @@ export class App extends Component {
    * @param {any} colIndex
    */
   handleClickCell = async (rowIndex, colIndex) => {
+    if (this.state.gameState === 'won' || this.state.gameState === 'lost') {
+      return
+    }
+    if (this.state.seconds === 0) {
+      this.startTimer()
+    }
+
     await axios
       .post(
         `https://minesweeper-api.herokuapp.com/games/${this.state.id}/check`,
@@ -53,6 +82,10 @@ export class App extends Component {
           gameState: response.data.state,
         })
         this.determineFace()
+
+        if (this.state.gameState === 'lost') {
+          this.stopTimer()
+        }
       })
   }
 
@@ -64,6 +97,10 @@ export class App extends Component {
   handleRightClickCell = async (event, rowIndex, colIndex) => {
     event.preventDefault()
     if (this.state.mines <= 0) {
+      return
+    }
+
+    if (this.state.gameState === 'won' || this.state.gameState === 'lost') {
       return
     }
 
@@ -114,7 +151,7 @@ export class App extends Component {
                 </button>
               </td>
               <td className="timer" colSpan={3}>
-                0
+                {this.state.seconds}
               </td>
             </tr>
           </thead>
