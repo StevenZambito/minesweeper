@@ -5,10 +5,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "react-scripts build",
-    "deploy": "echo 'To setup deployment run: npm run setup-deploy'",
+    "deploy": "netlify deploy --prod --dir=build",
     "setup-deploy": "app-app --deploy && npm run deploy",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postdeploy": "echo 'Your site was deployed to https://minesweeper-stevensmacbook.netlify.app'"
   },
   "browserslist": [
     ">0.2%",
@@ -35,5 +36,6 @@
     "prettier": "^2.2.1",
     "stylelint": "^13.10.0",
     "stylelint-config-standard": "^20.0.0"
-  }
+  },
+  "homepage": "https://minesweeper-stevensmacbook.netlify.app"
 }

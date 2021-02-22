@@ -75,9 +75,13 @@ export class App extends Component {
   /**
    * @param {any} rowIndex
    * @param {any} colIndex
+   * @param {string} value
    */
-  handleClickCell = async (rowIndex, colIndex) => {
+  handleClickCell = async (rowIndex, colIndex, value) => {
     if (this.state.gameState === 'won' || this.state.gameState === 'lost') {
+      return
+    }
+    if (value === 'F') {
       return
     }
     if (this.state.hasTimerStarted === false) {
@@ -100,8 +104,11 @@ export class App extends Component {
         })
         this.determineFace()
 
-        if (this.state.gameState === 'lost') {
+        if (this.state.gameState === 'lost' || this.state.gameState === 'won') {
           this.stopTimer()
+        }
+        if (this.state.gameState === 'won') {
+          this.setState({ mines: 0 })
         }
       })
   }
@@ -194,7 +201,9 @@ export class App extends Component {
                       <Cell
                         key={colIndex}
                         value={cell}
-                        onClick={() => this.handleClickCell(rowIndex, colIndex)}
+                        onClick={() =>
+                          this.handleClickCell(rowIndex, colIndex, cell)
+                        }
                         // @ts-ignore
                         onContextMenu={(event) =>
                           this.handleRightClickCell(event, rowIndex, colIndex)
