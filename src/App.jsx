@@ -28,6 +28,13 @@ export class App extends Component {
     this.newGame(this.state.difficulty)
   }
 
+  determineMargin = () => {
+    if (this.state.difficulty === 2) {
+      return 'hard-margin'
+    }
+    return ''
+  }
+
   /**
    * @param {any} chosenDifficulty
    */
@@ -48,6 +55,7 @@ export class App extends Component {
           difficulty: chosenDifficulty,
         })
         this.determineColSpan()
+        this.determineMargin()
       })
   }
 
@@ -149,7 +157,7 @@ export class App extends Component {
 
   render() {
     return (
-      <main>
+      <main className={this.determineMargin()}>
         <div className="button-difficulty">
           <button onClick={() => this.newGame(0)}>Easy</button>
           <button onClick={() => this.newGame(1)}>Medium</button>
