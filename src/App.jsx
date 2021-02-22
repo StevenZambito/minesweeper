@@ -22,6 +22,7 @@ export class App extends Component {
     timerVar: 1,
     difficulty: 0,
     colSpan: 3,
+    hasTimerStarted: false,
   }
 
   componentDidMount = () => {
@@ -40,6 +41,7 @@ export class App extends Component {
    */
   newGame = async (chosenDifficulty) => {
     this.stopTimer()
+    this.setState({ hasTimerStarted: false })
     await axios
       .post('https://minesweeper-api.herokuapp.com/games', {
         difficulty: chosenDifficulty,
@@ -55,7 +57,6 @@ export class App extends Component {
           difficulty: chosenDifficulty,
         })
         this.determineColSpan()
-        this.determineMargin()
       })
   }
 
@@ -79,8 +80,9 @@ export class App extends Component {
     if (this.state.gameState === 'won' || this.state.gameState === 'lost') {
       return
     }
-    if (this.state.seconds === 0) {
+    if (this.state.hasTimerStarted === false) {
       this.startTimer()
+      this.setState({ hasTimerStarted: true })
     }
 
     await axios
