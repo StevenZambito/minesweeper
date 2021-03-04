@@ -1,5 +1,7 @@
 # [Minesweeper](https://minesweeper-stevensmacbook.netlify.app/)
 
+## Assignment Overview:
+
 In this assignment, you will communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone. It might help to [familiarize yourself](https://www.youtube.com/watch?v=7B85WbEiYf4) with the game if you have never played it.
 
 [1]: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
