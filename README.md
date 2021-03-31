@@ -2,7 +2,7 @@
 
 ## Assignment Overview:
 
-For this assignment, the goal is to communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
+For this assignment, the goal was to communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
 
 [1]: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 
@@ -28,7 +28,7 @@ Interpret the response and render a graphical user interface. The API results in
 - [React Mouse Events](https://reactjs.org/docs/events.html#mouse-events)
 - [JavaScript Fetch API Quick Reference](https://handbook.suncoast.io/lessons/misc-quick-reference/js-fetch)
 - [AXIOS a better "fetch" for JavaScript](https://handbook.suncoast.io/lessons/misc-quick-reference/axios)
-- [Brief, but good article on using two-dimensional-arrays in React](https://www.pluralsight.com/guides/display-multidimensional-array-data-in-react)
+- [Article on using two-dimensional-arrays in React](https://www.pluralsight.com/guides/display-multidimensional-array-data-in-react)
 
 ### Explorer Mode
 
