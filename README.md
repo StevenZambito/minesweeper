@@ -2,7 +2,7 @@
 
 ## Assignment Overview:
 
-In this assignment, the goal is to communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
+For this assignment, the goal is to communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
 
 [1]: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 
@@ -21,7 +21,7 @@ Documentation for the API used:
 
 `https://minesweeper-api.herokuapp.com/`
 
-You will need to interpret the response and render a graphical user interface. The API results include an array of arrays (two-dimensional array). These represent _rows_ and _columns_. Consider using `flexbox`, `grid`, or an old-fashioned `table` to organize these.
+Interpret the response and render a graphical user interface. The API results include an array of arrays (two-dimensional array). These represent _rows_ and _columns_. Consider using `flexbox`, `grid`, or an old-fashioned `table` to organize these.
 
 ## Additional Resources
 
@@ -29,7 +29,6 @@ You will need to interpret the response and render a graphical user interface. T
 - [JavaScript Fetch API Quick Reference](https://handbook.suncoast.io/lessons/misc-quick-reference/js-fetch)
 - [AXIOS a better "fetch" for JavaScript](https://handbook.suncoast.io/lessons/misc-quick-reference/axios)
 - [Brief, but good article on using two-dimensional-arrays in React](https://www.pluralsight.com/guides/display-multidimensional-array-data-in-react)
-- Use Insomnia to test out the API. Try "playing" games with the API. This will help you understand the "flow" of the game via the API.
 
 ### Explorer Mode
 
