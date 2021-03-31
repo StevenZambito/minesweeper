@@ -1,8 +1,10 @@
 # [Minesweeper](https://minesweeper-stevensmacbook.netlify.app/)
 
+<img src="src/assets/Minesweeper.gif">
+
 ## Assignment Overview:
 
-In this assignment, you will communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone. It might help to [familiarize yourself](https://www.youtube.com/watch?v=7B85WbEiYf4) with the game if you have never played it.
+For this assignment, the goal was to communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
 
 [1]: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 
@@ -17,29 +19,18 @@ In this assignment, you will communicate with a back-end API server to create th
 
 ## Requirements
 
-Read over the documentation for the API we will be using:
+Documentation for the API used:
 
 `https://minesweeper-api.herokuapp.com/`
 
-You will need to interpret the response and render a graphical user interface. The API results include an array of arrays (two-dimensional array). These represent _rows_ and _columns_. Consider using `flexbox`, `grid`, or an old-fashioned `table` to organize these.
-
-Here is an example implementation of this assignment:
-
-![](https://github.com/suncoast-devs/handbook/raw/master/assignments/assets/bomb-sniffer.gif)
-
-### Setup
-
-```shell
-app-app Minesweeper
-```
+Interpret the response and render a graphical user interface. The API results include an array of arrays (two-dimensional array). These represent _rows_ and _columns_. Consider using `flexbox`, `grid`, or an old-fashioned `table` to organize these.
 
 ## Additional Resources
 
 - [React Mouse Events](https://reactjs.org/docs/events.html#mouse-events)
 - [JavaScript Fetch API Quick Reference](https://handbook.suncoast.io/lessons/misc-quick-reference/js-fetch)
 - [AXIOS a better "fetch" for JavaScript](https://handbook.suncoast.io/lessons/misc-quick-reference/axios)
-- [Brief, but good article on using two-dimensional-arrays in React](https://www.pluralsight.com/guides/display-multidimensional-array-data-in-react)
-- Use Insomnia to test out the API. Try "playing" games with the API. This will help you understand the "flow" of the game via the API.
+- [Article on using two-dimensional-arrays in React](https://www.pluralsight.com/guides/display-multidimensional-array-data-in-react)
 
 ### Explorer Mode
 
@@ -53,8 +44,3 @@ app-app Minesweeper
 
 - Before creating the game, allow the user to choose: _Easy_, _Medium_, or _Hard_ mode.
 - Have fun with the styling. Make it your own.
-
-### Epic Mode
-
-- Learn how to use `localStorage` API to store data in the browser. Use this to allow the user to close the browser window and come back to a game already in progress.
-- Add sound effects.
