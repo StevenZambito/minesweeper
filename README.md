@@ -23,16 +23,6 @@ Documentation for the API used:
 
 You will need to interpret the response and render a graphical user interface. The API results include an array of arrays (two-dimensional array). These represent _rows_ and _columns_. Consider using `flexbox`, `grid`, or an old-fashioned `table` to organize these.
 
-Here is an example implementation of this assignment:
-
-![](https://github.com/suncoast-devs/handbook/raw/master/assignments/assets/bomb-sniffer.gif)
-
-### Setup
-
-```shell
-app-app Minesweeper
-```
-
 ## Additional Resources
 
 - [React Mouse Events](https://reactjs.org/docs/events.html#mouse-events)
@@ -53,8 +43,3 @@ app-app Minesweeper
 
 - Before creating the game, allow the user to choose: _Easy_, _Medium_, or _Hard_ mode.
 - Have fun with the styling. Make it your own.
-
-### Epic Mode
-
-- Learn how to use `localStorage` API to store data in the browser. Use this to allow the user to close the browser window and come back to a game already in progress.
-- Add sound effects.
