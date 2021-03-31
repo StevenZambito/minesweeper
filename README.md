@@ -4,7 +4,7 @@
 
 ## Assignment Overview:
 
-For this assignment, the goal was to communicate with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
+For this assignment, I communicated with a back-end API server to create the user-interface for a [Minesweeper][1] clone.
 
 [1]: https://en.wikipedia.org/wiki/Minesweeper_(video_game)
 
